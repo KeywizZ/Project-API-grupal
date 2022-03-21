@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+
+* {
+    margin: 0px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+body {
+    background-color: #0f0e17;
+}
+
+h1 {
+    color: #fffffe;
+    font-size: 54px;
+    
+    text-shadow:3px 3px 1px #ff8906;
+    /* text-shadow:3px 3px 1px #090979; */
+}
+
+p {
+    color: #a7a9be;
+    font-size: 28px;
+}
+
+.firstDiv {
+    max-width: 45%;
+    text-align: center;
+}
+
+.genreContainer {
+    background-color: #090979;
+}
+
+.albumCard{
+    background-color: #ff8906;
+}
+
+.flexCard {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+/* PALETA DE COLORES
+https://www.happyhues.co/palettes/13
+background: #0f0e17
+titulos: #fffffe
+p: #a7a9be
+detalles: #ff8906
+texto dentro de detalles: #fffffe
+
+stroke: black
+main: #fffffe
+highlight: #ff8906
+secondary: #f25f4c
+tertiary: #e53170
+*/
+
+
+nav {
+    display: flex;
+    flex: 1;
+    /* justify-content: space-between; */
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 8%, #090979 28%, rgba(23,23,122,1) 58%, rgba(77,81,128,1) 100%);
+    padding: 20px;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+nav > img {
+    width: 280px;
+    margin: 2px;
+    
+}
+
+.artistCard {
+    background-color: red;
+}
+
+.topLinks {
+    max-width: 40%;
+}
+
+.login {
+    justify-content: flex-end;
+}
+
+.divContainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  
+.flex-wrap-anim-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.imgContainer > img {
+    width: 400px;
+    /* Media query para ocultarlo cuando sea movil */
+}
+
+.albumsContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.imageContainer > img {
+    max-width: 250px;
+}
+
+div {
+    border-radius: 15px;
+    margin: 30px;
+    /* background-color: #ffffff0e; */
+    gap: 10px;
+}
+
+ul {
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+li {
+    color: #a7a9be;
+    list-style: none;
+    display: inline;
+    padding: 10px;
+    font-size: 22px;
+}
+
+a {
+    display: block;
+    position: relative;
+    padding: 0.2em 0;
+    color: inherit;
+    text-decoration: none;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0.1em;
+    background-color: #ff8906;
+    opacity: 0;
+    transition: opacity 300ms, transform 300ms;
+}
+
+li > a {
+    overflow: hidden;
+}
+
+li > a::after {
+    opacity: 1;
+    transform: translate3d(-100%, 0, 0);
+}
+
+li > a:hover::after,
+li > a:focus::after {
+    transform: translate3d(0,0,0);
+}
+
+@media (max-width:600px) {
+    .imgContainer{
+        display: none;
+    }
+}
+
+/* Media Query for Mobile Devices */
+@media (max-width: 767px){
+    nav {
+     justify-content: center;
+    
+    }
+    .topLinks{
+        display: none;
+    }
+    .divContainer{
+        flex-direction: column;
+        justify-content: center;
+    }
+    div {
+        padding: 10px 0px 10px 0px;
+    }
+    .imageContainer > img {
+        max-width: 80%;
+    }
+    
+}
+
+/* Media Query for Tablets Ipads portrait mode */
+@media (min-width: 768px) and (max-width: 1024px){
+   
+}
+  
+/* Media Query for Laptops and Desktops */
+@media (min-width: 1025px) and (max-width: 1280px){
+   
+}
+  
+/* Media Query for Large screens */
+@media (min-width: 1281px) {
+    
+}

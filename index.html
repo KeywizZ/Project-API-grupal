@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./app.js" defer></script>
+    <link rel="stylesheet" href="style.css">
+    <title>API Musica</title>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <img src="./media/logo.png" alt="logo" onclick="mainPage()">
+            <ul class="topLinks">
+                <li><a onclick="printArtists()">Artistas</a></li>
+                <li><a onclick="getGenres()">Géneros</a></li>
+                <li><a onclick="getRandomArtist()">Aleatorio</a></li>
+            </ul>
+           <!--  <div class="login">
+                <button>Log In</button>
+                <button>Register</button>
+            </div> -->
+        </nav>
+    </header>
+
+    <main>
+        <!-- Añadir "flex-wrap-anim" a todo contenedor que queramos que sus
+             elementos tengan animacion de wrap -->
+        <div class="divContainer flex-wrap-anim">
+            <div class="firstDiv">
+                <h1>API Música</h1>
+                <p>Para encontrar tu música, o nueva música</p>
+            </div>
+            <div class="imgContainer">
+                <img src="./media/mainImg.jpg" alt="main">
+            </div>
+
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+
+</html>
