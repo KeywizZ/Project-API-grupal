@@ -51,13 +51,16 @@ const printArtist = (artist) => {
     for (let i = 0; i < artist.albums.length; i++) {
         let album = document.createElement('div')
         album.className = 'albumContainer'
-        album.innerHTML = artist.albums[i].name
+        albumName = document.createElement('h2')
+        albumName.className = 'albumName'
+        albumName.innerHTML = artist.albums[i].name
+        album.appendChild(albumName);
         let imageContainer = document.createElement('div')
         imageContainer.className = 'imageContainer';
         let image = document.createElement('img');
         image.src = artist.albums[i].img;
-        imageContainer.appendChild(image)
-        album.appendChild(imageContainer)
+        imageContainer.appendChild(image);
+        album.appendChild(imageContainer);
         albumsContainer.appendChild(album);
     }
     card.appendChild(albumsContainer)
@@ -96,7 +99,7 @@ const printAlbum = (album) => {
 
 let genres = [];
 const getGenres = () => {
-    genres= [];
+    genres = [];
     for (let i = 0; i < data.length; i++) {
         for (let j = 0; j < data[i].albums.length; j++) {
             if (!genres.includes(data[i].albums[j].genre)) {

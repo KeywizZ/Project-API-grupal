@@ -12,9 +12,13 @@ body {
 h1 {
     color: #fffffe;
     font-size: 54px;
-    
+    text-transform: capitalize;
     text-shadow:3px 3px 1px #ff8906;
     /* text-shadow:3px 3px 1px #090979; */
+}
+
+h2 {
+    color: #fffffe;
 }
 
 p {
@@ -25,10 +29,6 @@ p {
 .firstDiv {
     max-width: 45%;
     text-align: center;
-}
-
-.genreContainer {
-    background-color: #090979;
 }
 
 .albumCard{
@@ -77,7 +77,34 @@ nav > img {
 }
 
 .artistCard {
-    background-color: red;
+    border-radius: 7px;
+    border: 2px solid black;
+    /* box-shadow: 3px 3px 3px #cc6e03c7; */
+    box-shadow: 1px 1px 16px #cc6e03c7;
+    background: rgb(255,255,255);
+    background: linear-gradient(315deg, rgba(255,255,255,0.17270658263305327) 2%, rgba(46,43,71,1) 45%, rgba(0,0,0,0.7161239495798319) 98%);
+    width: 430px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.genreContainer {
+    font-size: 22px;
+    color: #a7a9be;
+    border-radius: 7px;
+    border: 2px solid black;
+    /* box-shadow: 3px 3px 3px #cc6e03c7; */
+    box-shadow: 1px 1px 16px #cc6e03c7;
+    background: rgb(255,255,255);
+    background: linear-gradient(315deg, rgba(255,255,255,0.17270658263305327) 2%, rgba(46,43,71,1) 45%, rgba(0,0,0,0.7161239495798319) 98%);
+    min-width: 120px;
+}
+
+.artistName {
+    margin-top: 12px;
+    border-bottom: 1px solid #ff8906;
+    text-align: center;
 }
 
 .topLinks {
@@ -86,6 +113,10 @@ nav > img {
 
 .login {
     justify-content: flex-end;
+}
+
+.logo {
+    cursor: pointer;
 }
 
 .divContainer {
@@ -110,6 +141,16 @@ nav > img {
     display: flex;
     justify-content: center;
     flex-direction: column;
+}
+
+.albumContainer {
+    text-align: center;
+    text-transform: capitalize;
+}
+
+.albumName {
+    font-size: 22px;
+    color: #a7a9be;
 }
 
 .imageContainer > img {
@@ -159,6 +200,7 @@ a::after {
 
 li > a {
     overflow: hidden;
+    cursor: pointer;
 }
 
 li > a::after {
