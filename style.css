@@ -89,16 +89,22 @@ nav > img {
     align-items: center;
 }
 
+.artistImage > img {
+    max-width: 250px;
+}
+
 .genreContainer {
     font-size: 22px;
     color: #a7a9be;
-    border-radius: 7px;
+    border-radius: 10px;
     border: 2px solid black;
     /* box-shadow: 3px 3px 3px #cc6e03c7; */
     box-shadow: 1px 1px 16px #cc6e03c7;
     background: rgb(255,255,255);
     background: linear-gradient(315deg, rgba(255,255,255,0.17270658263305327) 2%, rgba(46,43,71,1) 45%, rgba(0,0,0,0.7161239495798319) 98%);
     min-width: 120px;
+    padding: 50px;
+    text-align: center;
 }
 
 .artistName {
@@ -254,4 +260,29 @@ li > a:focus::after {
 /* Media Query for Large screens */
 @media (min-width: 1281px) {
     
+}
+
+
+.albumPopup {
+    position: fixed;
+    z-index: 1;
+    background-color: white;
+    position: absolute;
+    top: 25px;
+}
+
+.popupPicContainer>img {
+    max-width: 400px;
+}
+
+.songContainer {
+    margin: 5px;
+    width: 100%;
+    max-height: 25px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.songContainer>div {
+    max-height: 25px;
 }

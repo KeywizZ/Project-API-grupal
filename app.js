@@ -33,24 +33,48 @@ const printArtists = () => {
     for (let i = 0; i < data.length; i++) {
         printArtist(data[i])
     }
+
 }
 
 const printArtist = (artist) => {
     let card = document.createElement('div');
-    card.className = 'artistCard flexCard';
+        card.className = 'artistCard flexCard';
+        card.setAttribute('onclick', `showAlbums('${artist._id}')`)
 
-    console.log(artist.name)
+        let name = document.createElement('h1');
+        name.className = ('artistName');
+        name.innerHTML = artist.name;
+        let imageContainer = document.createElement('div');
+        imageContainer.className = 'artistImage';
+        let img = document.createElement('img');
 
-    let name = document.createElement('h1');
-    name.className = ('artistName');
-    name.innerHTML = artist.name;
-    card.appendChild(name);
-    let albumsContainer = document.createElement('div')
+        img.src = artist.img || "./media/placeholder.png";
+
+        imageContainer.appendChild(img);
+        card.appendChild(name);
+        card.appendChild(imageContainer);
+        divContainer.appendChild(card)
+}
+
+const showAlbums = async (id) => {
+    let artist;
+    try {
+        let petition = await fetch(`https://glacial-spire-78193.herokuapp.com/artist/${id}`);
+        artist = await petition.json();
+        console.log(artist)
+    }catch(error){
+        return error
+    }
+    let albumsContainer = document.createElement('div');
     albumsContainer.className = 'albumsContainer'
-
+    let returnBtn = document.createElement('button');
+    returnBtn.innerHTML = 'Volver'
+    returnBtn.setAttribute('onclick', "printArtists()")
+    albumsContainer.appendChild(returnBtn)
     for (let i = 0; i < artist.albums.length; i++) {
         let album = document.createElement('div')
-        album.className = 'albumContainer'
+        album.className = 'albumContainer';
+        album.setAttribute("onclick", `showAlbum('${artist.albums[i]._id}')`);
         albumName = document.createElement('h2')
         albumName.className = 'albumName'
         albumName.innerHTML = artist.albums[i].name
@@ -63,8 +87,11 @@ const printArtist = (artist) => {
         album.appendChild(imageContainer);
         albumsContainer.appendChild(album);
     }
+    divContainer.innerHTML = '';
+    let card = document.createElement('div');
     card.appendChild(albumsContainer)
     divContainer.appendChild(card)
+
 }
 
 const getRandomArtist = async () => {
@@ -87,6 +114,7 @@ const getAlbums = () => {
 const printAlbum = (album) => {
     let card = document.createElement('div');
     card.className = 'albumCard';
+    card.setAttribute("onclick", `showAlbum('${album._id}')`);
 
     console.log('Esto es el nomrbe del album: ' + album.name)
 
@@ -194,3 +222,68 @@ window.addEventListener('load', function (event) {
 });
 
 
+/* ----------------------------------- Pop-Up -------------------------------- */
+
+const showAlbum = async (id) => {
+    try {
+        let petition = await fetch(
+            `https://glacial-spire-78193.herokuapp.com/album/${id}`
+        );
+        let album = await petition.json();
+        console.log(album);
+        albumPopup(album);
+    } catch (error) {
+        console.error("error", error);
+    }
+};
+
+const albumPopup = (album) => {
+    let albumPopup = document.createElement("div");
+    albumPopup.className = "albumPopup";
+    let albumInfo = document.createElement("div");
+    albumInfo.className = "albumInfo";
+    albumInfo.innerHTML = `
+    <h2 class="album-name">${album.name}</h2>
+      <p><b>Año de lanzamiento:</b> ${album.date}</p>
+      <p><b>Género</b> ${album.genre}</p>
+    `;
+    let popupPicContainer = document.createElement("div");
+    popupPicContainer.className = "popupPicContainer";
+    let img = document.createElement("img");
+    img.src = album.img;
+
+    let songsList = document.createElement("div");
+    songsList.className = "songsList";
+    songsList.innerHTML = "Lista de canciones";
+
+    let songs = album.songs;
+    for (let i = 0; i < songs.length; i++) {
+        let songContainer = document.createElement("div");
+        songContainer.className = "songContainer";
+        let name = document.createElement("div");
+        name.className = "song-title";
+        name.innerHTML = album.songs[i].name;
+        let duration = document.createElement("div");
+        duration.className = "song-duration";
+        duration.innerHTML = album.songs[i].duration;
+
+        songContainer.appendChild(name);
+        songContainer.appendChild(duration);
+        songsList.appendChild(songContainer);
+    }
+
+    let closeBtn = document.createElement("button");
+    closeBtn.className = "closeBtn";
+    closeBtn.innerHTML = "cerrar";
+    closeBtn.addEventListener("click", () => {
+        albumPopup.style.display = "none";
+        albumPopup.remove();
+    });
+
+    popupPicContainer.appendChild(img);
+    albumPopup.appendChild(popupPicContainer);
+    albumPopup.appendChild(albumInfo);
+    albumPopup.appendChild(songsList);
+    albumPopup.appendChild(closeBtn);
+    divContainer.appendChild(albumPopup);
+};
