@@ -35,6 +35,12 @@ p {
     text-align: center;
     text-transform: capitalize;
     cursor: pointer;
+    transition: .6s;
+}
+
+.albumCard:hover {
+    transform: scale(1.1, 1.1);
+    transition: transform .6s ;
 }
 
 .flexCard {
@@ -90,8 +96,13 @@ nav > img {
     flex-wrap: wrap;
     align-items: center;
     cursor: pointer;
+    transition: .6s;
 }
 
+.artistCard:hover {
+    transform: scale(1.1, 1.1);
+    transition: transform .6s ;
+}
 
 .genreContainer {
     font-size: 22px;
@@ -107,7 +118,12 @@ nav > img {
     padding: 22px;
     text-align: center;
     cursor: pointer;
+    transition: .6s;
+}
 
+.genreContainer:hover {
+    transform: scale(1.1, 1.1);
+    transition: transform .6s ;
 }
 
 .allGenres {
@@ -188,6 +204,12 @@ nav > img {
     text-align: center;
     text-transform: capitalize;
     cursor: pointer;
+    transition: .6s;
+}
+
+.albumContainer:hover {
+    transform: scale(1.1, 1.1);
+    transition: transform .6s ;
 }
 
 .albumName {
