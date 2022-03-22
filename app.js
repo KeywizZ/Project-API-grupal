@@ -38,22 +38,22 @@ const printArtists = () => {
 
 const printArtist = (artist) => {
     let card = document.createElement('div');
-        card.className = 'artistCard flexCard';
-        card.setAttribute('onclick', `showAlbums('${artist._id}')`)
+    card.className = 'artistCard flexCard';
+    card.setAttribute('onclick', `showAlbums('${artist._id}')`)
 
-        let name = document.createElement('h1');
-        name.className = ('artistName');
-        name.innerHTML = artist.name;
-        let imageContainer = document.createElement('div');
-        imageContainer.className = 'artistImage';
-        let img = document.createElement('img');
+    let name = document.createElement('h1');
+    name.className = ('artistName');
+    name.innerHTML = artist.name;
+    let imageContainer = document.createElement('div');
+    imageContainer.className = 'artistImage';
+    let img = document.createElement('img');
 
-        img.src = artist.img || "./media/placeholder.png";
+    img.src = artist.img || "./media/placeholder.png";
 
-        imageContainer.appendChild(img);
-        card.appendChild(name);
-        card.appendChild(imageContainer);
-        divContainer.appendChild(card)
+    imageContainer.appendChild(img);
+    card.appendChild(name);
+    card.appendChild(imageContainer);
+    divContainer.appendChild(card)
 }
 
 const showAlbums = async (id) => {
@@ -62,13 +62,15 @@ const showAlbums = async (id) => {
         let petition = await fetch(`https://glacial-spire-78193.herokuapp.com/artist/${id}`);
         artist = await petition.json();
         console.log(artist)
-    }catch(error){
+    } catch (error) {
         return error
     }
     let albumsContainer = document.createElement('div');
     albumsContainer.className = 'albumsContainer'
     let returnBtn = document.createElement('button');
-    returnBtn.innerHTML = 'Volver'
+    returnBtn.className = "returnBtn";
+    returnBtn.innerHTML = `<img src="./media/arrow-left.svg" />`
+    /* returnBtn.innerHTML = 'Volver' */
     returnBtn.setAttribute('onclick', "printArtists()")
     albumsContainer.appendChild(returnBtn)
     for (let i = 0; i < artist.albums.length; i++) {
@@ -116,18 +118,26 @@ const printAlbum = (album) => {
     card.className = 'albumCard';
     card.setAttribute("onclick", `showAlbum('${album._id}')`);
 
-    console.log('Esto es el nomrbe del album: ' + album.name)
+    /* console.log('Esto es el nomrbe del album: ' + album.name) */
 
+    let imageContainer = document.createElement('div')
+    imageContainer.className = 'imageContainer'
+    let img = document.createElement('img')
+    img.src = album.img;
     let name = document.createElement('div');
     name.className = ('albumName');
     name.innerHTML = album.name;
     card.appendChild(name);
+    imageContainer.appendChild(img)
+    card.appendChild(imageContainer)
     divContainer.appendChild(card)
 }
 
 let genres = [];
 const getGenres = () => {
     genres = [];
+    let allGenres = document.createElement('div');
+    allGenres.className = 'allGenres';
     for (let i = 0; i < data.length; i++) {
         for (let j = 0; j < data[i].albums.length; j++) {
             if (!genres.includes(data[i].albums[j].genre)) {
@@ -143,8 +153,9 @@ const getGenres = () => {
         genreContainer.className = 'genreContainer';
         genreContainer.innerHTML = genres[i].toUpperCase();
         genreContainer.setAttribute('onclick', `getAlbumsByGenre('${genres[i]}')`)
-        divContainer.appendChild(genreContainer)
+        allGenres.appendChild(genreContainer)
     }
+    divContainer.appendChild(allGenres)
 
 }
 
@@ -245,7 +256,7 @@ const albumPopup = (album) => {
     albumInfo.innerHTML = `
     <h2 class="album-name">${album.name}</h2>
       <p><b>Año de lanzamiento:</b> ${album.date}</p>
-      <p><b>Género</b> ${album.genre}</p>
+      <p><b>Género:</b> ${album.genre}</p>
     `;
     let popupPicContainer = document.createElement("div");
     popupPicContainer.className = "popupPicContainer";
@@ -274,16 +285,16 @@ const albumPopup = (album) => {
 
     let closeBtn = document.createElement("button");
     closeBtn.className = "closeBtn";
-    closeBtn.innerHTML = "cerrar";
+    /* closeBtn.innerHTML = "cerrar"; */
     closeBtn.addEventListener("click", () => {
         albumPopup.style.display = "none";
         albumPopup.remove();
     });
 
     popupPicContainer.appendChild(img);
+    albumPopup.appendChild(closeBtn);
     albumPopup.appendChild(popupPicContainer);
     albumPopup.appendChild(albumInfo);
     albumPopup.appendChild(songsList);
-    albumPopup.appendChild(closeBtn);
     divContainer.appendChild(albumPopup);
 };
